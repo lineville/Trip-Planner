@@ -26,15 +26,18 @@ body {
   width: 100vw;
   height: 5vh;
 }
+#sidebar-container {
+  display: flex;
+  justify-content: flex-end;
+}
 
 #sidebar {
   display: flex;
   width: 25vw;
-  position: absolute;
+  /* position: absolute; */
   z-index: 2;
-  float: right;
   flex-direction: column;
-  margin-left: auto;
+  /* margin-left: auto; */
 }
 
 #selection-area {

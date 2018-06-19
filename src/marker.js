@@ -10,46 +10,34 @@ const map = new mapboxgl.Map({
   style: 'mapbox://styles/mapbox/streets-v10', // mapbox has lots of different map styles available.
 })
 
-const hotelMarker = coords => {
-  const pin = document.createElement('div') // Create a new, detached DIV
-  pin.style.width = '30px'
-  pin.style.height = '30px'
-  pin.style.backgroundImage = 'url(http://i.imgur.com/D9574Cu.png)'
-
-  new mapboxgl.Marker(pin).setLngLat([coords[0], coords[1]]).addTo(map)
+const icons = {
+  hotel: 'url(http://i.imgur.com/D9574Cu.png)',
+  activity: 'url(http://i.imgur.com/WbMOfMl.png)',
+  restaurant: 'url(http://i.imgur.com/cqR6pUI.png)',
 }
 
-const activityMarker = coords => {
+const marker = (coords, img) => {
   const pin = document.createElement('div') // Create a new, detached DIV
   pin.style.width = '30px'
   pin.style.height = '30px'
-  pin.style.backgroundImage = 'url(http://i.imgur.com/WbMOfMl.png)'
+  pin.style.backgroundImage = img
 
-  new mapboxgl.Marker(pin).setLngLat([coords[0], coords[1]]).addTo(map)
-}
-
-const restaurantMarker = coords => {
-  const pin = document.createElement('div') // Create a new, detached DIV
-  pin.style.width = '30px'
-  pin.style.height = '30px'
-  pin.style.backgroundImage = 'url(http://i.imgur.com/cqR6pUI.png)'
-
-  new mapboxgl.Marker(pin).setLngLat([coords[0], coords[1]]).addTo(map)
+  new mapboxgl.Marker(pin).setLngLat(coords).addTo(map)
 }
 
 const createMarker = (type, coords) => {
   switch (type) {
     case 'hotel':
-      hotelMarker(coords)
+      marker(coords, icons.hotel)
       break
     case 'activity':
-      activityMarker(coords)
+      marker(coords, icons.activity)
       break
     case 'restaurant':
-      restaurantMarker(coords)
+      marker(coords, icons.restaurant)
       break
     default:
-      hotelMarker(coords)
+      marker(coords)
       break
   }
 }
